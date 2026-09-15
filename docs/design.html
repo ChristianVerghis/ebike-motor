@@ -1,0 +1,172 @@
+<!doctype html><html><head><meta charset="utf-8"><title>ebike-motor — design diagrams</title>
+<style>
+body{font:15px/1.5 -apple-system,system-ui,sans-serif;max-width:980px;margin:2rem auto;padding:0 1rem;color:#1c2330;background:#fafbfc}
+h1{font-size:1.6rem;margin:.2rem 0} h2{font-size:1.15rem;margin:2.2rem 0 .4rem;border-bottom:1px solid #dde2ea;padding-bottom:.2rem}
+.sub{color:#5b6473} figure{margin:0;background:#fff;border:1px solid #e3e7ee;border-radius:10px;padding:1rem;overflow-x:auto}
+figcaption{font-size:.85rem;color:#5b6473;margin-top:.5rem} svg{display:block;max-width:100%;height:auto}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem} @media(max-width:760px){.grid{grid-template-columns:1fr}}
+table{border-collapse:collapse;font-size:.9rem} td,th{border:1px solid #e3e7ee;padding:.3rem .6rem;text-align:left} th{background:#f1f4f8}
+.k{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:4px}
+</style></head><body>
+<h1>ebike-motor — what we're aiming for</h1>
+<p class="sub">Coreless dual-rotor axial flux rear hub. 240 mm OD, 12 coils / 14 poles per rotor, 1"×1"×3/8" N42 magnets, 10 mm stator, 2 mm air gaps, 48 V VESC FOC. ~350 W cruise, ~38 Nm launch at 80 A.</p>
+
+<h2>1. Cross-section (through the axle)</h2>
+<figure>
+<svg viewBox="0 0 940 420" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5 0 10z" fill="#333"/></marker></defs>
+<!-- axle -->
+<rect x="40" y="200" width="860" height="20" fill="#8d949e"/><text x="110" y="195" font-size="12">14 mm fixed axle (slotted for wires)</text>
+<!-- torque arm / dropouts -->
+<rect x="60" y="150" width="30" height="120" fill="#c9ced6" stroke="#889"/><rect x="850" y="150" width="30" height="120" fill="#c9ced6" stroke="#889"/>
+<text x="75" y="290" font-size="11" text-anchor="middle">dropout</text><text x="865" y="290" font-size="11" text-anchor="middle">dropout</text>
+<!-- cassette -->
+<g fill="#b9bfc8" stroke="#778"><rect x="770" y="160" width="8" height="100"/><rect x="782" y="150" width="8" height="120"/><rect x="794" y="140" width="8" height="140"/><rect x="806" y="130" width="8" height="160"/><rect x="818" y="120" width="8" height="180"/></g>
+<text x="800" y="320" font-size="11" text-anchor="middle">cassette (~38 mm)</text>
+<!-- left rotor carrier -->
+<rect x="260" y="60" width="26" height="300" fill="#dfe6ee" stroke="#556" stroke-width="1.5"/>
+<rect x="286" y="80" width="6" height="260" fill="#6b7280"/><!-- steel back plate -->
+<rect x="292" y="95" width="12" height="60" fill="#d64545"/><rect x="292" y="265" width="12" height="60" fill="#3b6fd6"/>
+<!-- right rotor -->
+<rect x="424" y="60" width="26" height="300" fill="#dfe6ee" stroke="#556" stroke-width="1.5"/>
+<rect x="418" y="80" width="6" height="260" fill="#6b7280"/>
+<rect x="406" y="95" width="12" height="60" fill="#3b6fd6"/><rect x="406" y="265" width="12" height="60" fill="#d64545"/>
+<!-- stator -->
+<rect x="340" y="70" width="30" height="280" fill="#f3d9a8" stroke="#b58a3a" stroke-width="1.5"/>
+<rect x="340" y="95" width="30" height="60" fill="#e8a33c"/><rect x="340" y="265" width="30" height="60" fill="#e8a33c"/>
+<rect x="330" y="190" width="50" height="40" fill="#8d949e" stroke="#556"/>
+<!-- bearings -->
+<g fill="#fff" stroke="#556" stroke-width="1.5"><rect x="262" y="180" width="22" height="20"/><rect x="262" y="220" width="22" height="20"/><rect x="426" y="180" width="22" height="20"/><rect x="426" y="220" width="22" height="20"/></g>
+<!-- spoke flanges -->
+<g stroke="#556" stroke-width="1.5"><line x1="273" y1="60" x2="200" y2="20"/><line x1="273" y1="360" x2="200" y2="400"/><line x1="437" y1="60" x2="510" y2="20"/><line x1="437" y1="360" x2="510" y2="400"/></g>
+<text x="190" y="18" font-size="11" text-anchor="end">spokes → rim</text>
+<!-- gaps -->
+<line x1="304" y1="40" x2="340" y2="40" stroke="#333" marker-start="url(#ar)" marker-end="url(#ar)"/><text x="322" y="34" font-size="11" text-anchor="middle">2 mm gap</text>
+<line x1="370" y1="40" x2="406" y2="40" stroke="#333" marker-start="url(#ar)" marker-end="url(#ar)"/><text x="388" y="34" font-size="11" text-anchor="middle">2 mm gap</text>
+<!-- labels -->
+<text x="273" y="380" font-size="11" text-anchor="middle">Al carrier</text><text x="437" y="380" font-size="11" text-anchor="middle">Al carrier</text>
+<text x="355" y="370" font-size="11" text-anchor="middle">stator</text>
+<text x="289" y="352" font-size="9" text-anchor="middle">steel</text><text x="421" y="352" font-size="9" text-anchor="middle">steel</text>
+<!-- flux path -->
+<path d="M298 125 C 330 125, 380 125, 412 125" stroke="#0a8" stroke-width="2.5" fill="none" marker-end="url(#ar)" stroke-dasharray="4 3"/>
+<path d="M412 295 C 380 295, 330 295, 298 295" stroke="#0a8" stroke-width="2.5" fill="none" marker-end="url(#ar)" stroke-dasharray="4 3"/>
+<text x="355" y="120" font-size="10" fill="#0a8" text-anchor="middle">flux</text>
+<!-- OD dim -->
+<line x1="560" y1="60" x2="560" y2="360" stroke="#333" marker-start="url(#ar)" marker-end="url(#ar)"/><text x="575" y="215" font-size="12">Ø240 mm</text>
+<line x1="260" y1="410" x2="450" y2="410" stroke="#333" marker-start="url(#ar)" marker-end="url(#ar)"/><text x="355" y="405" font-size="11" text-anchor="middle">~90 mm hub width</text>
+<!-- legend -->
+<g font-size="11"><rect x="600" y="70" width="12" height="12" fill="#d64545"/><text x="618" y="80">N pole (1" × 1" × 3/8" N42, radial)</text>
+<rect x="600" y="90" width="12" height="12" fill="#3b6fd6"/><text x="618" y="100">S magnet</text>
+<rect x="600" y="110" width="12" height="12" fill="#6b7280"/><text x="618" y="120">3 mm steel back plate (flux return)</text>
+<rect x="600" y="130" width="12" height="12" fill="#e8a33c"/><text x="618" y="140">copper coil, epoxy/glass potted</text>
+<rect x="600" y="150" width="12" height="12" fill="#dfe6ee" stroke="#556"/><text x="618" y="160">6061 Al rotor / spoke carrier</text>
+<rect x="600" y="170" width="12" height="12" fill="#fff" stroke="#556"/><text x="618" y="180">6003/6004 bearing ×4</text></g>
+</svg>
+<figcaption>Stator clamped to the fixed axle; both rotors ride on bearings and are bolted together through the OD so the magnet pull (~1 kN) is carried rotor-to-rotor, not through the stator. Flux crosses stator → opposite magnet → back plate → next pole → back across.</figcaption>
+</figure>
+
+<div class="grid">
+<div><h2>2. Plan view — coils & poles</h2>
+<figure><svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"><circle cx="250" cy="250" r="120" fill="#e9eef5" stroke="#556" stroke-width="2"/>
+<circle cx="250" cy="250" r="65" fill="#fff" stroke="#556" stroke-width="2"/>
+<path d="M361.8,256.7 L324.9,254.5 A75 75 0 0 1 319.4,278.4 L353.6,292.5 A112 112 0 0 0 361.8,256.7 Z" fill="#d64545" opacity="0.9"/>
+<text x="341" y="275" font-size="11" fill="#fff" text-anchor="middle" font-weight="700">N</text>
+<path d="M347.8,304.6 L315.5,286.5 A75 75 0 0 1 300.2,305.7 L325.0,333.2 A112 112 0 0 0 347.8,304.6 Z" fill="#3b6fd6" opacity="0.9"/>
+<text x="323" y="312" font-size="11" fill="#fff" text-anchor="middle" font-weight="700">S</text>
+<path d="M314.5,341.6 L293.2,311.3 A75 75 0 0 1 271.0,322.0 L281.4,357.5 A112 112 0 0 0 314.5,341.6 Z" fill="#d64545" opacity="0.9"/>
+<text x="290" y="338" font-size="11" fill="#fff" text-anchor="middle" font-weight="700">N</text>
+<path d="M268.3,360.5 L262.3,324.0 A75 75 0 0 1 237.7,324.0 L231.7,360.5 A112 112 0 0 0 268.3,360.5 Z" fill="#3b6fd6" opacity="0.9"/>
+<text x="250" y="347" font-size="11" fill="#fff" text-anchor="middle" font-weight="700">S</text>
+<path d="M218.6,357.5 L229.0,322.0 A75 75 0 0 1 206.8,311.3 L185.5,341.6 A112 112 0 0 0 218.6,357.5 Z" fill="#d64545" opacity="0.9"/>
+<text x="210" y="338" font-size="11" fill="#fff" text-anchor="middle" font-weight="700">N</text>
+<path d="M175.0,333.2 L199.8,305.7 A75 75 0 0 1 184.5,286.5 L152.2,304.6 A112 112 0 0 0 175.0,333.2 Z" fill="#3b6fd6" opacity="0.9"/>
+<text x="177" y="312" font-size="11" fill="#fff" text-anchor="middle" font-weight="700">S</text>
+<path d="M146.4,292.5 L180.6,278.4 A75 75 0 0 1 175.1,254.5 L138.2,256.7 A112 112 0 0 0 146.4,292.5 Z" fill="#d64545" opacity="0.9"/>
+<text x="159" y="275" font-size="11" fill="#fff" text-anchor="middle" font-weight="700">N</text>
+<path d="M138.2,243.3 L175.1,245.5 A75 75 0 0 1 180.6,221.6 L146.4,207.5 A112 112 0 0 0 138.2,243.3 Z" fill="#3b6fd6" opacity="0.9"/>
+<text x="159" y="233" font-size="11" fill="#fff" text-anchor="middle" font-weight="700">S</text>
+<path d="M152.2,195.4 L184.5,213.5 A75 75 0 0 1 199.8,194.3 L175.0,166.8 A112 112 0 0 0 152.2,195.4 Z" fill="#d64545" opacity="0.9"/>
+<text x="177" y="196" font-size="11" fill="#fff" text-anchor="middle" font-weight="700">N</text>
+<path d="M185.5,158.4 L206.8,188.7 A75 75 0 0 1 229.0,178.0 L218.6,142.5 A112 112 0 0 0 185.5,158.4 Z" fill="#3b6fd6" opacity="0.9"/>
+<text x="210" y="170" font-size="11" fill="#fff" text-anchor="middle" font-weight="700">S</text>
+<path d="M231.7,139.5 L237.7,176.0 A75 75 0 0 1 262.3,176.0 L268.3,139.5 A112 112 0 0 0 231.7,139.5 Z" fill="#d64545" opacity="0.9"/>
+<text x="250" y="161" font-size="11" fill="#fff" text-anchor="middle" font-weight="700">N</text>
+<path d="M281.4,142.5 L271.0,178.0 A75 75 0 0 1 293.2,188.7 L314.5,158.4 A112 112 0 0 0 281.4,142.5 Z" fill="#3b6fd6" opacity="0.9"/>
+<text x="290" y="170" font-size="11" fill="#fff" text-anchor="middle" font-weight="700">S</text>
+<path d="M325.0,166.8 L300.2,194.3 A75 75 0 0 1 315.5,213.5 L347.8,195.4 A112 112 0 0 0 325.0,166.8 Z" fill="#d64545" opacity="0.9"/>
+<text x="323" y="196" font-size="11" fill="#fff" text-anchor="middle" font-weight="700">N</text>
+<path d="M353.6,207.5 L319.4,221.6 A75 75 0 0 1 324.9,245.5 L361.8,243.3 A112 112 0 0 0 353.6,207.5 Z" fill="#3b6fd6" opacity="0.9"/>
+<text x="341" y="233" font-size="11" fill="#fff" text-anchor="middle" font-weight="700">S</text>
+<g transform="translate(344.0,250.0) rotate(90.0)"><rect x="-13" y="-22" width="26" height="44" rx="6" fill="none" stroke="#e8a33c" stroke-width="5"/><text y="4" font-size="10" text-anchor="middle" fill="#222" font-weight="700">A</text></g>
+<g transform="translate(331.4,297.0) rotate(120.0)"><rect x="-13" y="-22" width="26" height="44" rx="6" fill="none" stroke="#3fa36b" stroke-width="5"/><text y="4" font-size="10" text-anchor="middle" fill="#222" font-weight="700">B</text></g>
+<g transform="translate(297.0,331.4) rotate(150.0)"><rect x="-13" y="-22" width="26" height="44" rx="6" fill="none" stroke="#8a5cd6" stroke-width="5"/><text y="4" font-size="10" text-anchor="middle" fill="#222" font-weight="700">C</text></g>
+<g transform="translate(250.0,344.0) rotate(180.0)"><rect x="-13" y="-22" width="26" height="44" rx="6" fill="none" stroke="#e8a33c" stroke-width="5"/><text y="4" font-size="10" text-anchor="middle" fill="#222" font-weight="700">A</text></g>
+<g transform="translate(203.0,331.4) rotate(210.0)"><rect x="-13" y="-22" width="26" height="44" rx="6" fill="none" stroke="#3fa36b" stroke-width="5"/><text y="4" font-size="10" text-anchor="middle" fill="#222" font-weight="700">B</text></g>
+<g transform="translate(168.6,297.0) rotate(240.0)"><rect x="-13" y="-22" width="26" height="44" rx="6" fill="none" stroke="#8a5cd6" stroke-width="5"/><text y="4" font-size="10" text-anchor="middle" fill="#222" font-weight="700">C</text></g>
+<g transform="translate(156.0,250.0) rotate(270.0)"><rect x="-13" y="-22" width="26" height="44" rx="6" fill="none" stroke="#e8a33c" stroke-width="5"/><text y="4" font-size="10" text-anchor="middle" fill="#222" font-weight="700">A</text></g>
+<g transform="translate(168.6,203.0) rotate(300.0)"><rect x="-13" y="-22" width="26" height="44" rx="6" fill="none" stroke="#3fa36b" stroke-width="5"/><text y="4" font-size="10" text-anchor="middle" fill="#222" font-weight="700">B</text></g>
+<g transform="translate(203.0,168.6) rotate(330.0)"><rect x="-13" y="-22" width="26" height="44" rx="6" fill="none" stroke="#8a5cd6" stroke-width="5"/><text y="4" font-size="10" text-anchor="middle" fill="#222" font-weight="700">C</text></g>
+<g transform="translate(250.0,156.0) rotate(360.0)"><rect x="-13" y="-22" width="26" height="44" rx="6" fill="none" stroke="#e8a33c" stroke-width="5"/><text y="4" font-size="10" text-anchor="middle" fill="#222" font-weight="700">A</text></g>
+<g transform="translate(297.0,168.6) rotate(390.0)"><rect x="-13" y="-22" width="26" height="44" rx="6" fill="none" stroke="#3fa36b" stroke-width="5"/><text y="4" font-size="10" text-anchor="middle" fill="#222" font-weight="700">B</text></g>
+<g transform="translate(331.4,203.0) rotate(420.0)"><rect x="-13" y="-22" width="26" height="44" rx="6" fill="none" stroke="#8a5cd6" stroke-width="5"/><text y="4" font-size="10" text-anchor="middle" fill="#222" font-weight="700">C</text></g>
+<text x="250" y="220" text-anchor="middle" font-size="12" fill="#333">12 coils</text><text x="250" y="236" text-anchor="middle" font-size="12" fill="#333">A B C repeating</text><text x="250" y="258" text-anchor="middle" font-size="12" fill="#333">14 poles / rotor</text><text x="250" y="274" text-anchor="middle" font-size="11" fill="#666">(one rotor shown behind)</text></svg>
+<figcaption>12 slot / 14 pole (LRK-style). Coils wound identically; connect A–B–C round the ring, alternating direction per phase pair. Wye-connected to the VESC. Rotor opposite has the mirror pole pattern (N faces S across the stator).</figcaption></figure></div>
+
+<div><h2>3. Exploded stack</h2>
+<figure><svg viewBox="0 0 560 500" xmlns="http://www.w3.org/2000/svg">
+<g font-size="12" text-anchor="middle">
+<ellipse cx="250" cy="70" rx="110" ry="28" fill="#dfe6ee" stroke="#556"/><text x="390" y="74" text-anchor="start">Al carrier L + spoke flange ★</text>
+<ellipse cx="250" cy="120" rx="105" ry="26" fill="#6b7280"/><text x="390" y="124" text-anchor="start">steel back plate L</text>
+<ellipse cx="250" cy="160" rx="95" ry="22" fill="#d64545"/><text x="390" y="164" text-anchor="start">14 magnets L (jig-placed) ◆</text>
+<ellipse cx="250" cy="215" rx="105" ry="26" fill="#f3d9a8" stroke="#b58a3a"/><text x="390" y="219" text-anchor="start">coreless stator disc ◆</text>
+<ellipse cx="250" cy="215" rx="30" ry="8" fill="#8d949e"/>
+<ellipse cx="250" cy="270" rx="95" ry="22" fill="#3b6fd6"/><text x="390" y="274" text-anchor="start">14 magnets R ◆</text>
+<ellipse cx="250" cy="310" rx="105" ry="26" fill="#6b7280"/><text x="390" y="314" text-anchor="start">steel back plate R</text>
+<ellipse cx="250" cy="360" rx="110" ry="28" fill="#dfe6ee" stroke="#556"/><text x="390" y="364" text-anchor="start">Al carrier R + spoke flange ★</text>
+<line x1="250" y1="20" x2="250" y2="440" stroke="#8d949e" stroke-width="10"/><text x="250" y="460">axle</text>
+<g fill="#fff" stroke="#556"><rect x="238" y="90" width="24" height="10"/><rect x="238" y="335" width="24" height="10"/></g>
+<text x="10" y="490" text-anchor="start" font-size="11">◆ = 3D-printed jig/mould involved &nbsp; ★ = printed prototype OK for bench only</text>
+</g></svg>
+<figcaption>Assembly order. Shims on the axle between stator hub and bearings set each gap. Through-bolts at the OD join the two carriers.</figcaption></figure></div>
+</div>
+
+<h2>4. Where it sits on the bike</h2>
+<figure><svg viewBox="0 0 940 400" xmlns="http://www.w3.org/2000/svg">
+<g stroke="#334" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="200" cy="290" r="90"/><circle cx="740" cy="290" r="90"/>
+<path d="M200 290 L330 130 L560 130 L620 290 M330 130 L360 90 M560 130 L520 290 L200 290 M330 130 L520 290 M620 290 L740 290 M560 130 L700 120"/>
+<path d="M300 90 L420 90" stroke-width="7"/><path d="M710 115 L740 105 M 700 120 L 760 120" stroke-width="6"/>
+</g>
+<!-- motor -->
+<circle cx="200" cy="290" r="48" fill="#f3d9a8" stroke="#b58a3a" stroke-width="3"/><circle cx="200" cy="290" r="40" fill="none" stroke="#6b7280" stroke-width="4"/><circle cx="200" cy="290" r="8" fill="#8d949e"/>
+<!-- battery -->
+<rect x="330" y="150" width="170" height="40" transform="rotate(-38 415 170)" fill="#3fa36b" stroke="#256" rx="6"/>
+<!-- vesc -->
+<rect x="510" y="215" width="55" height="30" fill="#8a5cd6" stroke="#556" rx="4"/>
+<!-- torque arm -->
+<path d="M200 290 L245 235" stroke="#d64545" stroke-width="6"/>
+<!-- chain -->
+<ellipse cx="360" cy="290" rx="160" ry="14" fill="none" stroke="#999" stroke-dasharray="4 4"/>
+<g font-size="13">
+<text x="200" y="395" text-anchor="middle">REAR HUB — axial flux motor, direct drive</text>
+<text x="110" y="200">torque arm →</text>
+<text x="300" y="60">48 V 13S pack (downtube)</text>
+<text x="580" y="235">VESC</text>
+<text x="360" y="330" text-anchor="middle" fill="#666">chain drivetrain untouched — pedal if battery dies</text>
+<text x="740" y="395" text-anchor="middle" fill="#666">front wheel: unpowered, keeps steering light</text>
+</g>
+</svg>
+<figcaption>Rear hub direct drive. At 25 km/h a 27.5" wheel turns ~230 rpm — the low-RPM/high-torque regime an axial flux pancake likes, no gearbox. Regen braking via VESC on the brake-lever switch.</figcaption></figure>
+
+<h2>5. Key numbers (phase 1 targets)</h2>
+<table><tr><th>Item</th><th>Target</th><th>Why</th></tr>
+<tr><td>Outer diameter</td><td>240 mm</td><td>Torque ∝ r²; fits inside 27.5" spokes</td></tr>
+<tr><td>Gap flux density</td><td>0.49 T pk / 0.46 T fund.</td><td>9.5 mm N42 both sides, 10 mm stator + 2×2 mm gaps (sizing.py)</td></tr>
+<tr><td>Kt / Kv</td><td>0.48 Nm/A · ~11 rpm/V</td><td>30 t × 2×14 AWG; ~460 rpm no-load @ 42 V</td></tr>
+<tr><td>Peak torque</td><td>29 Nm @ 60 A · ~38 Nm @ 80 A</td><td>Set VESC motor max 80 A</td></tr>
+<tr><td>Cruise / hill</td><td>8 Nm ≈ 45 W Cu · 15 Nm ≈ 160 W Cu</td><td>Hill torque is minutes not hours; cutback 85 °C</td></tr>
+<tr><td>Mass (motor)</td><td>~5 kg (1.3 kg magnets)</td><td>Coreless penalty; accepted for phase 1</td></tr>
+<tr><td>Electrical freq @ 250 rpm</td><td>~29 Hz</td><td>Low: solid 1 mm wire fine, no litz</td></tr>
+</table>
+<p class="sub">Phase 2 swaps in a laminated M270-35A segmented stator on the same rotors for ~1.8× torque density; ferrite rejected (saturates ~0.45 T).</p>
+</body></html>

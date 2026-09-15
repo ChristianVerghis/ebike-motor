@@ -1,0 +1,20 @@
+# project.yml — project manifest (name, links, checklist sections)
+name: ebike-motor
+kind: research
+status: active
+repo: ChristianVerghis/ebike-motor
+description: DIY coreless dual-rotor axial-flux rear hub motor for a commuter e-bike — 240 mm, 12 coils / 14 poles, VESC FOC with regen — sized with sim/sizing.py. Phase 0–3 from design to a ridden commuter.
+links:
+  - { label: "Design diagrams →", href: "/files/ebike-motor/docs/design.html", primary: true }
+  - { label: "Roadmap", href: "/files/ebike-motor/docs/roadmap.html" }
+  - { label: "Conversion-kit research", path: docs/conversion_kits.md }
+  - { label: "Components to buy", path: docs/components.md }
+tags: [ebike, motor, axial-flux, hardware, 3d-printing, vesc]
+checklists:
+  - { label: "Now: Phase 0 design", file: GOALS.md, section: "Now" }
+  - { label: "Bench motor", file: GOALS.md, section: "Bench motor" }
+  - { label: "Wheel and ride", file: GOALS.md, section: "Wheel and ride" }
+  - { label: "Motor build", file: PLAN.md }
+showcase:
+  kind: file
+  path: docs/design.html
