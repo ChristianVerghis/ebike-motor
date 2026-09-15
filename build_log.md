@@ -11,7 +11,7 @@
 **2026-09-01 (spec confirmed)** — Wrote sim/sizing.py (1-D magnetic circuit + leakage + winding/thermal). Result: 30×10×5 magnets are gap-limited (0.31 T pk with 15 mm stator) → switched to Applied Magnets 1"×1"×3/8" N42 ($5.35, 28 pcs), one per pole radial at r 92–117, stator thinned to 10 mm → 0.49 T pk. 1/2" thick adds <1 %. Winding 30 t × 2×14 AWG (5 lb spool): Kt 0.48, 460 rpm no-load, cruise 45 W Cu, 15 Nm hill 160 W. Peak ~38 Nm at 80 A. Pull ~0.8 kN. Axle → 14 mm hub-motor replacement + Grin V7 14 mm (12 mm hollow shears <80 Nm). Bearings deferred until axle Ø known. DXF jig pins moved to r=85.
 
 ## 2026-09-07
-- Consolidated conversion-kit research (Flipsky Z8/Z9 rejected; Leaf direct-drive hub + own VESC recommended as Phase 0; TSDZ2 OSF and BBS02 as alternatives; disc-mount pancake idea) into docs/conversion_kits.md. Phase 0 kit purchase still undecided.
+- Consolidated conversion-kit research (Flipsky Z8/Z9 rejected; Leaf direct-drive hub + own VESC recommended as Phase 0; TSDZ2 OSF and BBS02 as alternatives) into docs/conversion_kits.md. Phase 0 kit purchase still undecided.
 
 ## 2026-09-15
 - docs/components.md: master buy list across the motor orders, bike side and tools, ~$1,250–1,750 plus the donor bike.

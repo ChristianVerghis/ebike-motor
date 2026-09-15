@@ -19,7 +19,6 @@ Working checklist; tick items here. Sections are referenced by project.yml. Deta
 ## Wheel and ride (PLAN.md Phase 2–3)
 - [ ] Lace the 27.5" rim on the final carriers; torque arm; 48 V 13S pack; VESC tune with regen
 - [ ] Ride tests: flat speed, hill climb, thermal soak, regen feel
-- [ ] Phase-3 candidate: single-sided axial-flux disc on the 6-bolt mount (side idea in docs/conversion_kits.md)
 
 ## North-star goals
 - [ ] Bench spin of the custom motor

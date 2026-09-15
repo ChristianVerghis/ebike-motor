@@ -15,7 +15,7 @@ Chain/roller or friction drives with a sealed proprietary controller and a small
 | [Flipsky Z9](https://flipsky.net/products/flipsky-z9-bicycle-speed-booster-kit-for-increased-speed-with-48v-5-2ah-9ah-battery-copy) / [Z8](https://flipsky.net/products/z8) | $219–259 | 450 W outrunner, chain + roller on rear wheel, 48 V 5.2 or 9 Ah (≈250 Wh ≈ 12 km assist). [AliExpress spec](https://www.aliexpress.com/i/1005009445601751.html) |
 | Rubbee X | ~$500–700 | Friction roller on rear tyre, swappable battery modules |
 | Clip | ~$500 | Front-wheel friction drive clamped to fork |
-| Skarper | ~$1,500 | Drives a special disc-brake rotor; closed system |
+| Skarper | ~$1,500 | Removable drive unit via a special rotor; closed system |
 | Add-e, Velogical | $800–1,500 | European roller drives, well made, sealed |
 
 Shared problems: slips in the wet, 250–500 W, proprietary controller, small battery, no reuse path.
@@ -50,12 +50,6 @@ Cost of this route ≈ **$600–900**, of which only the hub ($150–250) is not
 2. Tear down and measure the hub (or buy the $80 HPC front hub as a bench specimen): magnet dims, turns, Kt, phase R → calibrate `sim/sizing.py`.
 3. Build the coreless axial-flux motor on the bench with the VESC already tuned.
 4. Swap wheels.
-
-## Side idea — frame-mounted "pancake" using the wheel as rotor (phase-3 candidate)
-
-The clip-on commercial drives use the same mounting idea. Rotor = steel + magnet disc bolted to the **6-bolt disc-brake mount** (~160–200 mm usable OD); stator bracket on the **caliper tabs**, which take torque reaction so no torque arm. Coreless makes it feasible: near-zero attraction, so a 2.5–3 mm gap can float with wheel wobble.
-
-Costs: single-sided (air return ≈ half the field; a steel backing plate recovers it but brings back a few hundred N of attraction), smaller diameter (torque ∝ r²), brake-rotor conflict (adapter carrying both discs, non-drive-side mount, or rim-brake bike), IS/post/flat-mount variety. Expect **150–250 W**, a quarter to a third of the hub motor's torque per kg of magnet. Mechanically easier than the hub (no axle, bearings, lacing, dropout fit); rotor disc, coil former, and potting process all carry over.
 
 ## Sources
 
